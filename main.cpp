@@ -38,7 +38,7 @@ vector<double> multV(vector<vector<double>> A, vector<double> v, double n) {
 double somaDosQuadradosDosTermosAbaixoDaDiagonal(vector<vector<double>> A, double n) {
   double s = 0;
   for (int i = 0; i < n; i++) {
-    for (int j = 0; j > i; j++) {
+    for (int j = 0; j < i; j++) {
       s += A[i][j]*A[i][j];
     }
   }
@@ -88,7 +88,7 @@ tuple <vector<vector<double>>, vector<vector<double>>> decomposicaoQR(vector<vec
   }
   R_velha = A;
 
-  for (int j = 0; j < n; j++) {
+  for (int j = 0; j < n-1; j++) {
     for (int i = j+1; i < n; i++) {
       Jij = matrizJacobiBaseadaNoElemento_ij_DeRvelha(R_velha, i, j, n);
       R_nova = mult(Jij, R_velha, n);
@@ -131,9 +131,9 @@ void metodoQR(double n, vector<vector<double>> A, vector<double> v0, double epsi
     cout << "Matriz diagonal calculada nessa iteração:\n";
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
-        cout << A_r[i][j] << " | ";
+        cout << A_nova[i][j] << " | ";
       }
-      cout << "\b\b\n";
+      cout << "\b\b\b\n";
     }
     cout << "\n";
 
@@ -145,9 +145,7 @@ void metodoQR(double n, vector<vector<double>> A, vector<double> v0, double epsi
 
     cout << A_r[i][i] << ", (";
     vector<double> aV(n);
-    for (int k = 0; k < n; k++) {
-      aV[k] = A_r[i][i];
-    }
+    aV[i] = 1;
     aV = multV(P, aV, n);
     for (int j = 0; j < n; j++) {
       cout << aV[j] << ", ";
