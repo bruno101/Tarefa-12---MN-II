@@ -133,7 +133,7 @@ void metodoQR(double n, vector<vector<double>> A, vector<double> v0, double epsi
       for (int j = 0; j < n; j++) {
         cout << A_nova[i][j] << " | ";
       }
-      cout << "\b\b\b\n";
+      cout << "\b\b  \n";
     }
     cout << "\n";
 
